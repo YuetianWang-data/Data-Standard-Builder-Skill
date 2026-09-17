@@ -1,8 +1,6 @@
 # Data Standard Builder
 
-Data Standard Builder is a GitHub Copilot agent skill and Python pipeline for creating traceable business
-data standards from database metadata, normative documents, data-quality rule catalogs, and AI-assisted
-semantic decisions.
+Data Standard Builder is a GitHub Copilot agent skill and Python pipeline for creating traceable business data standards from database metadata, normative documents, data-quality rule catalogs, and AI-assisted semantic decisions. It was completed in May 2026 and was recently uploaded to GitHub.
 
 It separates deterministic processing from semantic judgment:
 
