@@ -1,0 +1,33 @@
+rule_id,rule_name,rule_content,scope,target,severity,source
+G001,Date format,Date values must use YYYY-MM-DD format,Date or datetime fields,data_type:date|datetime,Required,Template rule
+G002,Date ordering,The start date must be before or equal to the end date on the same business object,Start and end date field pair,field_pair:start_date|end_date,Required,Template rule
+G003,Primary-key integrity,A primary-key field must be non-null and unique within its table,Primary-key fields,primary_key:true,Required,Template rule
+G004,Code value domain,A code field value must belong to a confirmed code set,Code or status fields,field_name:*code*|*status*,Recommended,Template rule
+G005,Mandatory-field completeness,A field declared as non-null must always contain a valid business value,Non-null fields,nullable:false,Required,Template rule
+G006,Declared string length,A text value must not exceed the field length declared by the schema,Text fields with a declared length,data_type:char|varchar|string AND length:*,Required,Template rule
+G007,Whitespace normalization,A text value must not contain unintended leading or trailing whitespace,Names labels codes and identifiers,data_type:string AND semantic:not_free_text,Recommended,Template rule
+G008,Control-character exclusion,A text value must not contain unapproved control characters,Human-readable text fields,data_type:string,Recommended,Template rule
+G009,Numeric precision and scale,A numeric value must fit the precision and scale declared by the schema,Decimal or numeric fields,data_type:decimal|numeric AND precision:*,Required,Template rule
+G010,Nonnegative measure,A measure that is semantically nonnegative must be greater than or equal to zero,Counts quantities durations balances and sizes,field_name:*count*|*quantity*|*duration*|*size*|*balance*,Recommended,Template rule
+G011,Rate and percentage range,A rate or percentage must stay within the business-confirmed range and representation,Rate ratio and percentage fields,field_name:*rate*|*ratio*|*percent*,Manual review,Template rule
+G012,Monetary precision,A monetary value must use the business-confirmed currency scale and rounding rule,Amounts prices fees costs and balances,field_name:*amount*|*price*|*fee*|*cost*|*balance*,Manual review,Template rule
+G013,Boolean domain,A Boolean field must use only the approved true and false representations,Boolean and flag fields,data_type:boolean OR field_name:is_*|has_*|*_flag,Required,Template rule
+G014,Business-key uniqueness,A confirmed business key must be unique within its defined business scope,Business identifiers and document numbers,field_name:*_number|*_no|business_key:* ,Manual review,Template rule
+G015,Referential integrity,A foreign-key value must reference an existing active parent record unless explicitly optional,Foreign-key and reference fields,foreign_key:true OR field_name:*_id,Required,Template rule
+G016,Email format,When present an email value must conform to the business-approved email syntax,Email fields,field_name:email|*_email,Recommended,Template rule
+G017,Phone format,When present a phone value must conform to the jurisdiction and business-approved phone format,Telephone and mobile fields,field_name:phone|mobile|tel|*_phone|*_mobile,Manual review,Template rule
+G018,URL format,When present a URL or URI must be syntactically valid and use an approved scheme,URL URI and website fields,field_name:url|uri|website|*_url|*_uri,Recommended,Template rule
+G019,IP address format,When present an IP address must be a valid approved IPv4 or IPv6 representation,IP address fields,field_name:ip|ip_address|*_ip,Recommended,Template rule
+G020,JSON validity,A JSON value must parse successfully and conform to the approved object shape when a schema exists,JSON and JSONB fields,data_type:json|jsonb,Required,Template rule
+G021,Timestamp and timezone,A cross-system timestamp must use an unambiguous format with the approved timezone convention,Timestamps exchanged across systems,data_type:timestamp|datetime,Recommended,Template rule
+G022,Audit timestamp ordering,The update timestamp must be greater than or equal to the creation timestamp on the same record,Creation and update timestamp pair,field_pair:created_at|updated_at,Required,Template rule
+G023,Future event time,An observed event timestamp must not be later than the permitted ingestion-time tolerance,Observed event and transaction timestamps,field_name:event_time|occurred_at|transaction_time,Manual review,Template rule
+G024,Effective-period ordering,The effective start must be earlier than or equal to the effective end,Effective-from and effective-to field pair,field_pair:effective_from|effective_to OR valid_from|valid_to,Required,Template rule
+G025,Soft-delete consistency,A soft-delete flag and deletion timestamp must agree according to the approved deletion convention,Soft-delete fields,field_pair:is_deleted|deleted_at,Recommended,Template rule
+G026,Geographic coordinate range,Latitude must be between -90 and 90 and longitude must be between -180 and 180,Latitude and longitude fields,field_pair:latitude|longitude OR lat|lon,Required,Template rule
+G027,Geographic hierarchy consistency,Country region city and district values must form a valid hierarchy when jointly present,Geographic hierarchy fields,field_group:country|region|province|city|district|county,Recommended,Template rule
+G028,Code-name consistency,A code and its descriptive name must resolve to the same reference-data entry,Code and name pairs,field_pair:*_code|*_name,Recommended,Template rule
+G029,Leading-zero preservation,Identifiers and codes with meaningful leading zeros must be stored and exported as text,Identifier and code fields,field_name:*code*|*_id|*_number AND leading_zero:possible,Required,Template rule
+G030,Null-placeholder exclusion,Missing values must use the approved null representation rather than placeholder text or magic values,Structured fields that permit missing values,value:not_applicable|unknown|N/A|NULL|-|9999,Recommended,Template rule
+G031,Sensitive-data protection,Sensitive values must be masked encrypted tokenized or access-controlled according to the approved security classification,Personal confidential credential and financial fields,classification:personal|sensitive|confidential|credential,Manual review,Template rule
+G032,Sensitive-data minimization,Sensitive data must be collected and retained only when justified by an approved business purpose,Personal and sensitive fields,classification:personal|sensitive,Manual review,Template rule
